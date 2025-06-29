@@ -3,12 +3,22 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "igw_id" {
+  description = "Internet Gateway ID for public route table"
+  type        = string
+}
+
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs to associate with public route table"
+  type        = list(string)
+}
+
 variable "nat_gateway_id" {
-  description = "ID of the NAT Gateway for route"
+  description = "NAT Gateway ID for private route table"
   type        = string
 }
 
 variable "private_subnet_ids" {
-  description = "List of private subnet IDs to associate with the private route table"
+  description = "List of private subnet IDs to associate with private route table"
   type        = list(string)
 }
