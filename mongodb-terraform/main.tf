@@ -24,12 +24,13 @@ module "subnets" {
 }
 
 module "route_table" {
-  source              = "./modules/route-table"
-  vpc_id              = module.vpc.vpc_id
-  igw_id              = module.vpc.igw_id
-  nat_gateway_id      = module.nat_gateway.nat_gateway_id
-  public_subnet_ids   = module.subnets.public_subnet_ids
-  private_subnet_ids  = module.subnets.private_subnet_ids
+  source                = "./modules/route-table"
+  vpc_id                = module.vpc.vpc_id
+  igw_id                = module.vpc.igw_id
+  public_route_table_id = module.vpc.public_route_table_id   
+  public_subnet_ids     = module.subnets.public_subnet_ids
+  nat_gateway_id        = module.nat-gateway.nat_gateway_id
+  private_subnet_ids    = module.subnets.private_subnet_ids
 }
 
 module "nat_gateway" {
