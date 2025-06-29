@@ -8,6 +8,11 @@ variable "igw_id" {
   type        = string
 }
 
+variable "public_route_table_id" {
+  description = "ID of the public route table"
+  type        = string
+}
+
 variable "public_subnet_ids" {
   description = "List of public subnet IDs to associate with public route table"
   type        = list(string)
