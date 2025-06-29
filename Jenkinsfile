@@ -46,8 +46,8 @@ pipeline {
             }
             steps {
                 echo "Cloning the repository..."
-                sh 'rm -rf mongodb_infra_tool'
-                sh 'git clone https://github.com/meer727/mongodb_infra_tool.git'
+                sh 'rm -rf 29-june'
+                sh 'git clone https://github.com/meer727/29-june.git'
             }
         }
 
@@ -140,8 +140,8 @@ pipeline {
                     script {
                         sh '''
                             echo "Fetching bastion host ip for proxy from dynamic inventory..."
-                            BASTION_PUBLIC_IP=$(ansible-inventory -i mongodb_infra_tool/mongodb-role/aws_ec2.yml --list | jq -r '._meta.hostvars[._Bastion_server.hosts[0]].public_ip_address')
-                            cd mongodb_infra_tool/mongodb-role
+                            BASTION_PUBLIC_IP=$(ansible-inventory -i 29-june/mongodb-role/aws_ec2.yml --list | jq -r '._meta.hostvars[._Bastion_server.hosts[0]].public_ip_address')
+                            cd 29-june/mongodb-role
                             
                             echo "BASTION_PUBLIC_IP: $BASTION_PUBLIC_IP"
                             echo "SSH_PRIVATE_KEY path: $SSH_PRIVATE_KEY"
@@ -204,7 +204,7 @@ pipeline {
 
 def withAwsAndDir(Closure body) {
     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-credentials']]) {
-        dir('mongodb_infra_tool/mongodb-terraform') {
+        dir('29-june/mongodb-terraform') {
             body()
         }
     }
