@@ -18,7 +18,3 @@ variable "availability_zones" {
   type        = list(string)
 }
 
-variable "public_route_table_id" {
-  description = "ID of the public route table"
-  type        = string
-}
