@@ -23,6 +23,15 @@ module "subnets" {
   public_route_table_id = module.vpc.public_route_table_id # Add this line
 }
 
+module "route_table" {
+  source              = "./modules/route-table"
+  vpc_id              = module.vpc.vpc_id
+  igw_id              = module.vpc.igw_id
+  nat_gateway_id      = module.nat_gateway.nat_gateway_id
+  public_subnet_ids   = module.subnets.public_subnet_ids
+  private_subnet_ids  = module.subnets.private_subnet_ids
+}
+
 module "nat_gateway" {
   source             = "./modules/nat-gateway"
   public_subnet_id   = module.subnets.public_subnet_ids[0]
