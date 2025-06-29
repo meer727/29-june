@@ -20,7 +20,6 @@ module "subnets" {
   public_subnet_cidrs   = var.public_subnet_cidrs
   private_subnet_cidrs  = var.private_subnet_cidrs
   availability_zones    = var.availability_zones
-  public_route_table_id = module.vpc.public_route_table_id # Add this line
 }
 
 module "route_table" {
